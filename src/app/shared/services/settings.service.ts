@@ -12,6 +12,7 @@ export class SettingsService {
     theme: 'default',
     titleFontSize: localStorage.getItem("titleFontSize") ? localStorage.getItem("titleFontSize") : '16',
     listSpacing: localStorage.getItem("listSpacing") ? localStorage.getItem("listSpacing") : '0',
+    isTextToSpeechEnabled: localStorage.getItem("isTextToSpeechEnabled") ? JSON.parse(localStorage.getItem("isTextToSpeechEnabled")) : true,
   };
 
   darkColorSchemeMedia = window.matchMedia('(prefers-color-scheme: dark)');
@@ -85,5 +86,10 @@ export class SettingsService {
   setSpacing(listSpace){
     this.settings.listSpacing = listSpace;
     localStorage.setItem("listSpacing", this.settings.listSpacing);
+  }
+
+  setTextToSpeech(enable:boolean){
+    this.settings.isTextToSpeechEnabled = enable;
+    localStorage.setItem("isTextToSpeechEnabled", JSON.stringify(this.settings.isTextToSpeechEnabled));
   }
 }

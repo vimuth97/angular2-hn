@@ -11,7 +11,7 @@
                     [checked]="settings.openLinkInNewTab" 
                     (change)="toggleOpenLinksInNewTab()"
                     >
-                    <label class="custom-control-label" for="customSwitch1">Open links in a new tab</label>
+                    <label class="custom-control-label" for="customSwitch1" ><ng-container *ngIf="!settings.openLinkInNewTab">Do not </ng-container>Open links in a new tab</label>
                   </div>
             </div>
             <div class="theme-controls">
@@ -75,6 +75,16 @@
                             (change)="changeSpacing(listSpacing.value)" />
                         </label>
                     </div>
+                </div>
+                <div class="control-section">
+                    <h3>Text To Speech</h3>
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="customSwitch2"
+                        [checked]="settings.isTextToSpeechEnabled" 
+                        (change)="changeTextToSpeech(!settings.isTextToSpeechEnabled)"
+                        >
+                        <label class="custom-control-label" for="customSwitch2">Text to Speech <ng-container *ngIf="settings.isTextToSpeechEnabled">Enabled</ng-container><ng-container *ngIf="!settings.isTextToSpeechEnabled">Disabled</ng-container></label>
+                      </div>
                 </div>
                 <div class="control-section">
                     <div class="row">
