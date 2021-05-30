@@ -4,15 +4,20 @@
     <a [routerLink]="['/user', comment.user]" routerLinkActive="active">{{comment.user}}</a>
     <span class="time">{{comment.time_ago}}</span>
   </div>
+  
   <div class="comment-tree">
-    <div [hidden]="collapse">
       <p class="comment-text" [innerHTML]="comment.content"></p>
+      <a *ngIf="comment.comments.length>0" class="read-text" (click)="changeCollapse()">{{readText}}</a>
+      <br>
+      <br>
+      <div [hidden]="collapse">
       <ul class="subtree">
         <li *ngFor="let subComment of comment.comments"> 
-          <app-comment [comment]="subComment"></app-comment>
+          <app-comment [comment]="subComment" [isMainComment]="false"></app-comment>
         </li>
       </ul>
     </div>
+    
   </div>
 </div>
 <div *ngIf="comment.deleted">
@@ -20,3 +25,5 @@
     <span class="collapse">[deleted]</span> | Comment Deleted
   </div>
 </div>
+<hr *ngIf="isMainComment">
+
