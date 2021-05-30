@@ -56,7 +56,7 @@ export class SpeechService {
       });
 
       // this._notificationService.showInfo("Text To Speech is available for this browser", "Help")
-      this.speak("Text To Speech is available for this browser, To disable click on settings")
+      //this.speak("Text To Speech is Enabled")
     }
   }
 
