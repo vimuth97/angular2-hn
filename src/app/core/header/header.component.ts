@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 
 import { SettingsService } from '../../shared/services/settings.service';
 import { Settings } from '../../shared/models/settings';
@@ -9,7 +9,7 @@ import { SpeechService } from 'src/app/shared/services/speech-service/speech.ser
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit,AfterViewInit {
   settings: Settings;
 
   constructor(
@@ -20,7 +20,10 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    let tagNames = ['a'];// 'h2', 'h3', 'label', 'button'
+  }
+
+  ngAfterViewInit(){
+    let tagNames = ['a','p','h2', 'h3', 'label', 'button']
     this.addEventListenersToElements(tagNames)
   }
 
