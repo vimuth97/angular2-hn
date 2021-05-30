@@ -17,27 +17,27 @@
             <div class="theme-controls">
                 <div class="control-section">
                     <h3>Select a theme</h3>
-                    <div class="row">
-                        <div class="col-md-4">
+                    <div class="row no-margin">
+                        <div class="col-sm-4 col-4">
                             <button  #default
                             type="button" 
-                            class="btn btn-block btn-light"
+                            class="btn btn-block btn-light small-btn"
                             name="theme" 
                             (click)="selectTheme('default')">Default</button>
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-sm-4 col-4">
                             <button  #night
                             type="button" 
-                            class="btn btn-block btn-primary"
+                            class="btn btn-block btn-primary small-btn"
                             name="theme" 
                             (click)="selectTheme('night')">Night</button>
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-sm-4 col-4">
                             <button  #amoledblack
                             type="button" 
-                            class="btn btn-block btn-dark"
+                            class="btn btn-block btn-dark small-btn"
                             name="theme" 
                             (click)="selectTheme('amoledblack')">Amoled</button>
                         </div>                    
@@ -76,8 +76,8 @@
                         </label>
                     </div>
                 </div>
-                <div class="control-section">
-                    <div class="row">
+                <div class="control-section-final">
+                    <div class="row no-margin">
                         <div class="col-md-12">
                             <button  #reset
                             [disabled]="isDefault()"
