@@ -55,8 +55,8 @@ export class SpeechService {
         console.error("An error occured while initializing : ", e)
       });
 
-      this._notificationService.showInfo("Text To Speech is available for this browser", "Help")
-      this.speak("Text To Speech is available for this browser")
+      // this._notificationService.showInfo("Text To Speech is available for this browser", "Help")
+      this.speak("Text To Speech is available for this browser, To disable click on settings")
     }
   }
 
