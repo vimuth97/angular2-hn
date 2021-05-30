@@ -8,7 +8,7 @@ import { Settings } from '../models/settings';
 export class SettingsService {
   settings: Settings = {
     showSettings : false,
-    openLinkInNewTab: localStorage.getItem("openLinkInNewTab") ? JSON.parse(localStorage.getItem("openLinkInNewTab")) : false,
+    openLinkInNewTab: localStorage.getItem("openLinkInNewTab") ? JSON.parse(localStorage.getItem("openLinkInNewTab")) : true,
     theme: 'default',
     titleFontSize: localStorage.getItem("titleFontSize") ? localStorage.getItem("titleFontSize") : '16',
     listSpacing: localStorage.getItem("listSpacing") ? localStorage.getItem("listSpacing") : '0',
