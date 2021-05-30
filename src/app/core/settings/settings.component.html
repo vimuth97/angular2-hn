@@ -80,6 +80,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <button  #reset
+                            [disabled]="isDefault()"
                             type="button" 
                             class="btn btn-block btn-dark"
                             name="reset" 
@@ -87,9 +88,6 @@
                         </div>
                     </div>
                 </div>
-                <button (click)="showToasterSuccess()">
-                    Save
-                    </button>
             </div>
         </div>
     </div>
