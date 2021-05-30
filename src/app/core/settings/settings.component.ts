@@ -40,8 +40,15 @@ export class SettingsComponent implements OnInit {
 
   resetToDefault() {
     this.selectTheme('default');
-    this.changeTitleFont(16);
-    this.changeSpacing(0);
+    this.changeTitleFont("16");
+    this.changeSpacing("0");
     if (!this.settings.openLinkInNewTab) this.toggleOpenLinksInNewTab();
+  }
+
+  isDefault():boolean{
+    return this.settings.listSpacing=="0"
+      &&this.settings.openLinkInNewTab==true
+      &&this.settings.titleFontSize=="16"
+      &&this.settings.theme=="default"
   }
 }
