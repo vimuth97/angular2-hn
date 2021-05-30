@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { SettingsService } from '../../shared/services/settings.service';
-import { NotificationService } from '../../shared/services/notification-service/notification.service';
 import { Settings } from '../../shared/models/settings';
-
-import { Howl } from 'howler';
 
 @Component({
   selector: 'app-settings',
@@ -13,15 +10,9 @@ import { Howl } from 'howler';
 })
 export class SettingsComponent implements OnInit {
   settings: Settings;
-  sound = new Howl({
-    src: ['./assets/notification-success.wav']
-  })
 
-  constructor(
-    private _settingsService: SettingsService,
-    private notifyService : NotificationService,
-    ) {
-      this.settings = this._settingsService.settings;;
+  constructor(private _settingsService: SettingsService) {
+    this.settings = this._settingsService.settings;
   }
 
   ngOnInit() {
@@ -47,9 +38,17 @@ export class SettingsComponent implements OnInit {
     this._settingsService.setSpacing(val);
   }
 
-  showToasterSuccess(){
-    this.notifyService.showSuccess("Updated successfully !!","Settings");
-    this.sound.play();
+  resetToDefault() {
+    this.selectTheme('default');
+    this.changeTitleFont("16");
+    this.changeSpacing("0");
+    if (!this.settings.openLinkInNewTab) this.toggleOpenLinksInNewTab();
   }
 
+  isDefault():boolean{
+    return this.settings.listSpacing=="0"
+      &&this.settings.openLinkInNewTab==true
+      &&this.settings.titleFontSize=="16"
+      &&this.settings.theme=="default"
+  }
 }
