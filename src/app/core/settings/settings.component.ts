@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { SettingsService } from '../../shared/services/settings.service';
+import { NotificationService } from '../../shared/services/notification-service/notification.service';
 import { Settings } from '../../shared/models/settings';
 
 @Component({
@@ -11,8 +12,11 @@ import { Settings } from '../../shared/models/settings';
 export class SettingsComponent implements OnInit {
   settings: Settings;
 
-  constructor(private _settingsService: SettingsService) {
-    this.settings = this._settingsService.settings;
+  constructor(
+    private _settingsService: SettingsService,
+    private notifyService : NotificationService,
+    ) {
+      this.settings = this._settingsService.settings;
   }
 
   ngOnInit() {
@@ -37,4 +41,9 @@ export class SettingsComponent implements OnInit {
   changeSpacing(val){
     this._settingsService.setSpacing(val);
   }
+
+  showToasterSuccess(){
+    this.notifyService.showSuccess("","Settings updated successfully !!");
+  }
+
 }

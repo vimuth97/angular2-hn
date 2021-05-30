@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { routing } from './app.routes';
 
@@ -27,6 +28,7 @@ import { SettingsService } from './shared/services/settings.service';
             enabled: environment.production,
         }),
         ToastrModule.forRoot(),
+        BrowserAnimationsModule,
     ],
     providers: [HackerNewsAPIService, SettingsService],
     bootstrap: [AppComponent],
