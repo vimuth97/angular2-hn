@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ToastrModule } from 'ngx-toastr';
 
 import { routing } from './app.routes';
 
@@ -25,6 +26,7 @@ import { SettingsService } from './shared/services/settings.service';
         ServiceWorkerModule.register('ngsw-worker.js', {
             enabled: environment.production,
         }),
+        ToastrModule.forRoot(),
     ],
     providers: [HackerNewsAPIService, SettingsService],
     bootstrap: [AppComponent],
