@@ -37,4 +37,11 @@ export class SettingsComponent implements OnInit {
   changeSpacing(val){
     this._settingsService.setSpacing(val);
   }
+
+  resetToDefault() {
+    this.selectTheme('default');
+    this.changeTitleFont(16);
+    this.changeSpacing(0);
+    if (!this.settings.openLinkInNewTab) this.toggleOpenLinksInNewTab();
+  }
 }
