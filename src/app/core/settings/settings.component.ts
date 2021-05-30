@@ -48,7 +48,7 @@ export class SettingsComponent implements OnInit {
     this.selectTheme('default');
     this.changeTitleFont("16");
     this.changeSpacing("0");
-    this.notifyService.showSuccess("Updated successfully !!", "Settings");
+    this.notifyService.showSuccess("Reset to defaults successfully!", "Settings");
     this.sound.play();
     if (!this.settings.openLinkInNewTab) this.toggleOpenLinksInNewTab();
   }
