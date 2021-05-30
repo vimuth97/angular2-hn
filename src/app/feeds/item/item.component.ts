@@ -21,7 +21,9 @@ export class ItemComponent implements OnInit,AfterViewInit {
     this.settings = this._settingsService.settings;
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this._speechService.stopRead();
+  }
 
   
   ngAfterViewInit(){

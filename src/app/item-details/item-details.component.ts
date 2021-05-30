@@ -8,6 +8,7 @@ import { SettingsService } from '../shared/services/settings.service';
 
 import { Story } from '../shared/models/story';
 import { Settings } from '../shared/models/settings';
+import { SpeechService } from '../shared/services/speech-service/speech.service';
 
 @Component({
   selector: 'app-item-details',
@@ -24,6 +25,7 @@ export class ItemDetailsComponent implements OnInit {
     private _hackerNewsAPIService: HackerNewsAPIService,
     private _settingsService: SettingsService,
     private route: ActivatedRoute,
+    private _speechService : SpeechService,
     private _location: Location
   ) {
     this.settings = this._settingsService.settings;
@@ -37,6 +39,7 @@ export class ItemDetailsComponent implements OnInit {
       }, error => this.errorMessage = 'Could not load item comments.');
     });
     window.scrollTo(0, 0);
+    this._speechService.stopRead();
   }
 
   goBack() {
