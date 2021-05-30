@@ -13,6 +13,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { HackerNewsAPIService } from './shared/services/hackernews-api.service';
 import { SettingsService } from './shared/services/settings.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
     declarations: [AppComponent, FeedComponent, ItemComponent],
@@ -25,6 +26,7 @@ import { SettingsService } from './shared/services/settings.service';
         ServiceWorkerModule.register('ngsw-worker.js', {
             enabled: environment.production,
         }),
+        NgbModule,
     ],
     providers: [HackerNewsAPIService, SettingsService],
     bootstrap: [AppComponent],
