@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { SettingsService } from '../../shared/services/settings.service';
 import { NotificationService } from '../../shared/services/notification-service/notification.service';
 import { Settings } from '../../shared/models/settings';
+import {Howl, Howler} from 'howler';
 
 @Component({
   selector: 'app-settings',
@@ -11,12 +12,15 @@ import { Settings } from '../../shared/models/settings';
 })
 export class SettingsComponent implements OnInit {
   settings: Settings;
+  sound = new Howl({
+    src: ['./assets/notification-success.wav']
+  })
 
   constructor(
     private _settingsService: SettingsService,
     private notifyService : NotificationService,
     ) {
-      this.settings = this._settingsService.settings;
+      this.settings = this._settingsService.settings;;
   }
 
   ngOnInit() {
@@ -43,7 +47,8 @@ export class SettingsComponent implements OnInit {
   }
 
   showToasterSuccess(){
-    this.notifyService.showSuccess("","Settings updated successfully !!");
+    this.notifyService.showSuccess("Updated successfully !!","Settings");
+    this.sound.play();
   }
 
 }
