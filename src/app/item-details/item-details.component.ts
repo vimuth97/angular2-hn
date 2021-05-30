@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Subscription } from 'rxjs/Subscription';
@@ -15,7 +15,7 @@ import { SpeechService } from '../shared/services/speech-service/speech.service'
   templateUrl: './item-details.component.html',
   styleUrls: ['./item-details.component.scss']
 })
-export class ItemDetailsComponent implements OnInit {
+export class ItemDetailsComponent implements OnInit,AfterViewInit {
   sub: Subscription;
   item: Story;
   errorMessage = '';
@@ -36,10 +36,16 @@ export class ItemDetailsComponent implements OnInit {
       let itemID = +params['id'];
       this._hackerNewsAPIService.fetchItemContent(itemID).subscribe(item => {
         this.item = item;
+        // let tagNames = ['a','p','h2', 'h3', 'label', 'button']
+        // this.addEventListenersToElements(tagNames);
       }, error => this.errorMessage = 'Could not load item comments.');
     });
     window.scrollTo(0, 0);
     this._speechService.stopRead();
+  }
+
+  ngAfterViewInit(){
+
   }
 
   goBack() {
@@ -50,4 +56,23 @@ export class ItemDetailsComponent implements OnInit {
     return this.item.url.indexOf('http') === 0;
   }
 
+  addEventListenersToElements(tagNames: string[]) {
+    tagNames.forEach(tagName => {
+      let elementList = document.getElementsByTagName(tagName);
+      for (let i = 0; i < elementList.length; i++) {
+        const element = elementList[i];
+        element.addEventListener('mouseover', (e) => this.mouseOverEvent(e));
+        element.addEventListener('mouseout', (e) => this.mouseOutEvent(e));
+      }
+    })
+  }
+
+  mouseOverEvent(e) {
+    console.log(e.target['innerText'])
+    this._speechService.speak(e.target['innerText'] ?? "text is not readable");
+  }
+
+  mouseOutEvent(e) {
+    this._speechService.stopRead();
+  }
 }
