@@ -41,3 +41,6 @@ app-root:empty + .app-loader {
 app-root:empty + .app-loader .logo {
     width: 20vh;
 }
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';

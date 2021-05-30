@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { routing } from './app.routes';
 
@@ -13,6 +15,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { HackerNewsAPIService } from './shared/services/hackernews-api.service';
 import { SettingsService } from './shared/services/settings.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
     declarations: [AppComponent, FeedComponent, ItemComponent],
@@ -25,6 +28,9 @@ import { SettingsService } from './shared/services/settings.service';
         ServiceWorkerModule.register('ngsw-worker.js', {
             enabled: environment.production,
         }),
+        ToastrModule.forRoot(),
+        BrowserAnimationsModule,
+        NgbModule,
     ],
     providers: [HackerNewsAPIService, SettingsService],
     bootstrap: [AppComponent],

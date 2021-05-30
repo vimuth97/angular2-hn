@@ -1,80 +1,91 @@
-<div id="popup1" class="overlay">
+<div id="popup1" class="overlay modal-header">
     <div class="popup">
         <h1>Settings</h1>
         <hr>
         <span class="close" (click)="closeSettings()">&times;</span>
         <div class="content">
             <div class="control-section">
-                <h2>Links</h2>
-                <input 
-                    type="checkbox" 
+                <h3>Links</h3>
+                <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="customSwitch1"
                     [checked]="settings.openLinkInNewTab" 
-                    (change)="toggleOpenLinksInNewTab()" />
-                    Open links in a new tab
+                    (change)="toggleOpenLinksInNewTab()"
+                    >
+                    <label class="custom-control-label" for="customSwitch1">Open links in a new tab</label>
+                  </div>
             </div>
             <div class="theme-controls">
                 <div class="control-section">
-                    <h2>Select a theme</h2>
-                    <div>
-                        <label>
-                        <input #default 
+                    <h3>Select a theme</h3>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <button  #default
+                            type="button" 
+                            class="btn btn-block btn-light"
                             name="theme" 
-                            type="radio" 
-                            value="default" 
-                            [checked]="settings.theme === default.value"
-                            (click)="selectTheme(default.value)" />
-                            Default
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                        <input #night 
+                            (click)="selectTheme('default')">Default</button>
+                        </div>
+
+                        <div class="col-md-4">
+                            <button  #night
+                            type="button" 
+                            class="btn btn-block btn-primary"
                             name="theme" 
-                            type="radio" 
-                            value="night" 
-                            [checked]="settings.theme === night.value" 
-                            (click)="selectTheme(night.value)" />
-                            Night
-                        </label>
+                            (click)="selectTheme('night')">Night</button>
+                        </div>
+
+                        <div class="col-md-4">
+                            <button  #amoledblack
+                            type="button" 
+                            class="btn btn-block btn-dark"
+                            name="theme" 
+                            (click)="selectTheme('amoledblack')">Amoled</button>
+                        </div>                    
                     </div>
+                </div>
+                <div class="control-section">
+                    <h3>Font & Spacing</h3>
                     <div>
                         <label>
+                        Font size: {{settings.titleFontSize}}
                         <input 
-                            #amoledblack 
+                            class="form-control-range"
+                            #titleFont 
+                            min="1" 
+                            max="40"
+                            step="1"
+                            [value]="settings.titleFontSize" 
                             name="theme" 
-                            type="radio" 
-                            value="amoledblack" 
-                            [checked]="settings.theme === amoledblack.value"
-                            (click)="selectTheme(amoledblack.value)" />
-                            Black (AMOLED)
+                            type="range" 
+                            (change)="changeTitleFont(titleFont.value)" />
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                        List spacing: {{settings.listSpacing}}
+                        <input 
+                            #listSpacing 
+                            class="form-control-range"
+                            min="0" 
+                            max = "30"
+                            step = "1"
+                            [value]="settings.listSpacing" 
+                            name="theme" 
+                            type="range" 
+                            (change)="changeSpacing(listSpacing.value)" />
                         </label>
                     </div>
                 </div>
                 <div class="control-section">
-                    <h2>Change Font</h2>
-                    <div>
-                        <label>
-                        Font size:
-                        <input 
-                            #titleFont 
-                            min="1" 
-                            [value]="settings.titleFontSize" 
-                            name="theme" 
-                            type="number" 
-                            (keyup)="changeTitleFont(titleFont.value)" />
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                        List spacing:
-                        <input 
-                            #listSpacing 
-                            min="0" 
-                            [value]="settings.listSpacing" 
-                            name="theme" 
-                            type="number" 
-                            (keyup)="changeSpacing(listSpacing.value)" />
-                        </label>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button  #reset
+                            [disabled]="isDefault()"
+                            type="button" 
+                            class="btn btn-block btn-dark"
+                            name="reset" 
+                            (click)="resetToDefault()">Reset to Defaults</button>
+                        </div>
                     </div>
                 </div>
             </div>
