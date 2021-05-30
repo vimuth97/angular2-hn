@@ -9,11 +9,25 @@ import { Comment } from '../../shared/models/comment';
 })
 export class CommentComponent implements OnInit {
   @Input() comment: Comment;
+  @Input() isMainComment: boolean;
   collapse: boolean;
+  readText:string;
 
   constructor() {}
 
   ngOnInit() {
-    this.collapse = false;
+    this.collapse = true;
+    this.readText = "Show Replies";
+  }
+  changeCollapse(){
+    console.log("change collapse function clicked");
+    if(this.collapse ==true){
+      this.collapse = false;
+      this.readText = "Hide Replies";
+    }
+    else{
+      this.collapse =true;
+      this.readText = "Show Replies";
+    }
   }
 }

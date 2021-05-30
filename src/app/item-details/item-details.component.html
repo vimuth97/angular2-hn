@@ -52,7 +52,7 @@
     <p class="subject" [innerHTML]="item.content"></p>
     <ul class="comment-list">
       <li *ngFor="let comment of item.comments" >
-        <app-comment [comment]="comment"></app-comment>
+        <app-comment [comment]="comment" [isMainComment]="true"></app-comment>
       </li>
     </ul>
   </div>
