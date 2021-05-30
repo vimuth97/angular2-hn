@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { routing } from './app.routes';
 
@@ -26,6 +28,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         ServiceWorkerModule.register('ngsw-worker.js', {
             enabled: environment.production,
         }),
+        ToastrModule.forRoot(),
+        BrowserAnimationsModule,
         NgbModule,
     ],
     providers: [HackerNewsAPIService, SettingsService],
