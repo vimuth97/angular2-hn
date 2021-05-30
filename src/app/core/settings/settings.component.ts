@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { SettingsService } from '../../shared/services/settings.service';
 import { NotificationService } from '../../shared/services/notification-service/notification.service';
 import { Settings } from '../../shared/models/settings';
-import {Howl, Howler} from 'howler';
+
+import { Howl } from 'howler';
 
 @Component({
   selector: 'app-settings',
