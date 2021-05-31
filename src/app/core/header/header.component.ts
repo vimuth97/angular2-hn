@@ -55,4 +55,10 @@ export class HeaderComponent implements OnInit,AfterViewInit {
     this._speechService.stopRead();
   }
 
+  getTheme():string{
+    if (this.settings.theme=='default')return 'light' 
+    if (this.settings.theme=='night')return 'dark' 
+    if (this.settings.theme=='amoled')return 'dark' 
+  }
+
 }
