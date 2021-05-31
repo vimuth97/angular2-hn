@@ -89,3 +89,11 @@
   padding: 0;
   list-style-type: none;
 }
+
+hr {
+  border: none;
+  height: 4px;
+  /* Set the hr color */
+  color: rgb(27, 27, 27); /* old IE */
+  background-color: rgb(27, 27, 27); /* Modern Browsers */
+}
