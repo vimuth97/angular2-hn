@@ -1,6 +1,5 @@
 {
   "projects": {
-    "default": "angular2-hn",
-    "experiment": "angular2-hn-experiment"
+    "default": "hacker-news-universal"
   }
 }
