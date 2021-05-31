@@ -2,11 +2,7 @@
   <app-loader *ngIf="!items && !errorMessage"></app-loader>
   <app-error-message [message]="errorMessage" *ngIf="!items && errorMessage !==''"></app-error-message>
 
-  <div *ngIf="items" class="row justify-content-center mt-2 mb-4">
-    <!-- <div class="col-lg-8"> -->
-    <ngb-pagination [collectionSize]="['news', 'newest'].includes(feedType) ? 30*maxNewsPages : 30*maxOtherPages" (pageChange)="goToPage($event)" [(page)]="pageNum" pageSize=30 [boundaryLinks]="true"></ngb-pagination>
-    <!-- </div> -->
-  </div>
+
   <div *ngIf="items">
     <p class="job-header" *ngIf="feedType === 'jobs'">
       These are jobs at startups that were funded by Y Combinator.
@@ -25,6 +21,11 @@
         More ›
       </a>
     </div> -->
+    <div *ngIf="items" class="row justify-content-center mt-4 mb-6">
+      <!-- <div class="col-lg-8"> -->
+      <ngb-pagination [collectionSize]="['news', 'newest'].includes(feedType) ? 30*maxNewsPages : 30*maxOtherPages" (pageChange)="goToPage($event)" [(page)]="pageNum" pageSize=30 [boundaryLinks]="true"></ngb-pagination>
+      <!-- </div> -->
+    </div>
   </div>
   <ngb-toast class="custom-toast bg-success text-light" *ngIf="items && showToast" [autohide]="true" (hidden)="showToast=false">
     Load New Feed
