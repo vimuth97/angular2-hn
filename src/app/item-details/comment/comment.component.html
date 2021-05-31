@@ -1,19 +1,29 @@
 <div *ngIf="!comment.deleted">
   <div class="meta" [class.meta-collapse]="collapse">
     <span class="collapse" (click)="collapse = !collapse">[{{collapse ? '+' : '-'}}]</span> 
-    <a [routerLink]="['/user', comment.user]" routerLinkActive="active">{{comment.user}}</a>
-    <span class="time">{{comment.time_ago}}</span>
+    <a [routerLink]="['/user', comment.user]" routerLinkActive="active"
+    (mouseover)="mouseOverRead(comment.user)"
+    (mouseout)="mouseAwayStopRead()">{{comment.user}}</a>
+    <span class="time"
+    (mouseover)="mouseOverRead(comment.time_ago)"
+    (mouseout)="mouseAwayStopRead()"
+    >{{comment.time_ago}}</span>
   </div>
   
   <div class="comment-tree">
-      <p class="comment-text" [innerHTML]="comment.content"></p>
-      <a *ngIf="comment.comments.length>0" class="read-text" (click)="changeCollapse()">{{readText}}</a>
+      <p class="comment-text" [innerHTML]="comment.content"  
+      (mouseover)="mouseOverRead(comment.content)"
+      (mouseout)="mouseAwayStopRead()"></p>
+      <a *ngIf="comment.comments.length>0" class="read-text" (click)="changeCollapse()"
+        (mouseover)="mouseOverRead(readText)"
+        (mouseout)="mouseAwayStopRead()">{{readText}}</a>
       <br>
       <br>
       <div [hidden]="collapse">
       <ul class="subtree">
         <li *ngFor="let subComment of comment.comments"> 
           <app-comment [comment]="subComment" [isMainComment]="false"></app-comment>
+          <hr>
         </li>
       </ul>
     </div>
@@ -21,7 +31,9 @@
   </div>
 </div>
 <div *ngIf="comment.deleted">
-  <div class="deleted-meta">
+  <div class="deleted-meta" 
+  (mouseover)="mouseOverRead('Comment Deleted')"
+  (mouseout)="mouseAwayStopRead()">
     <span class="collapse">[deleted]</span> | Comment Deleted
   </div>
 </div>

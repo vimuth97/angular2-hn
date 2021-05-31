@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { SpeechService } from 'src/app/shared/services/speech-service/speech.service';
 
 import { Comment } from '../../shared/models/comment';
 
@@ -13,7 +14,9 @@ export class CommentComponent implements OnInit {
   collapse: boolean;
   readText:string;
 
-  constructor() {}
+  constructor(    
+    private _speechService : SpeechService,
+  ) {}
 
   ngOnInit() {
     this.collapse = true;
@@ -29,5 +32,18 @@ export class CommentComponent implements OnInit {
       this.collapse =true;
       this.readText = "Show Replies";
     }
+  }
+
+  mouseOverRead(text: string) {
+    var temporalDivElement = document.createElement("div");
+    // Set the HTML content with the providen
+    temporalDivElement.innerHTML = text;
+    // Retrieve the text property of the element (cross-browser support)
+    let result = temporalDivElement.textContent || temporalDivElement.innerText || "not readable content";
+    this._speechService.speak(result);
+  }
+
+  mouseAwayStopRead() {
+    this._speechService.stopRead();
   }
 }
