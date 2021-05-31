@@ -15,7 +15,7 @@ import { SpeechService } from '../shared/services/speech-service/speech.service'
   templateUrl: './item-details.component.html',
   styleUrls: ['./item-details.component.scss']
 })
-export class ItemDetailsComponent implements OnInit,AfterViewInit {
+export class ItemDetailsComponent implements OnInit, AfterViewInit {
   sub: Subscription;
   item: Story;
   errorMessage = '';
@@ -25,7 +25,7 @@ export class ItemDetailsComponent implements OnInit,AfterViewInit {
     private _hackerNewsAPIService: HackerNewsAPIService,
     private _settingsService: SettingsService,
     private route: ActivatedRoute,
-    private _speechService : SpeechService,
+    private _speechService: SpeechService,
     private _location: Location
   ) {
     this.settings = this._settingsService.settings;
@@ -44,7 +44,7 @@ export class ItemDetailsComponent implements OnInit,AfterViewInit {
     this._speechService.stopRead();
   }
 
-  ngAfterViewInit(){
+  ngAfterViewInit() {
 
   }
 
@@ -73,6 +73,20 @@ export class ItemDetailsComponent implements OnInit,AfterViewInit {
   }
 
   mouseOutEvent(e) {
+    this._speechService.stopRead();
+  }
+
+  mouseOverRead(text: string) {
+    var temporalDivElement = document.createElement("div");
+    // Set the HTML content with the providen
+    temporalDivElement.innerHTML = text;
+    // Retrieve the text property of the element (cross-browser support)
+    let result = temporalDivElement.textContent || temporalDivElement.innerText || "not readable content";
+    if (!result) result = "not readable content"
+    this._speechService.speak(result);
+  }
+
+  mouseAwayStopRead() {
     this._speechService.stopRead();
   }
 }

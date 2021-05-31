@@ -17,24 +17,31 @@
     </div>
     <div class="laptop" [class.item-header]="item.comments_count > 0 || item.type === 'job'" [class.head-margin]="item.text">
       <p *ngIf="hasUrl">
-        <a class="title" href="{{item.url}}" [attr.target]="settings.openLinkInNewTab ? '_blank' : null" [attr.rel]="settings.openLinkInNewTab ? 'noopener' : null">
+        <a class="title" href="{{item.url}}" [attr.target]="settings.openLinkInNewTab ? '_blank' : null" [attr.rel]="settings.openLinkInNewTab ? 'noopener' : null"
+        (mouseover)="mouseOverRead(item.title)" (mouseout)="mouseAwayStopRead()">
         {{item.title}}
         </a>
-        <span *ngIf="item.domain" class="domain">({{item.domain}})</span>
+        <span *ngIf="item.domain" class="domain"
+        (mouseover)="mouseOverRead(item.domain)" (mouseout)="mouseAwayStopRead()">({{item.domain}})</span>
       </p>
       <p *ngIf="!hasUrl">
-        <a class="title" [routerLink]="['/item', item.id]" routerLinkActive="active">
+        <a class="title" [routerLink]="['/item', item.id]" routerLinkActive="active"
+        (mouseover)="mouseOverRead(item.title)" (mouseout)="mouseAwayStopRead()">
         {{item.title}}
         </a>
       </p>
       <div class="subtext">
-        <span *ngIf="item.type !== 'job'">
+        <span *ngIf="item.type !== 'job'"
+        (mouseover)="mouseOverRead(item.points+'points by'+item.user)" (mouseout)="mouseAwayStopRead()"
+        >
         {{item.points}} points by
           <a [routerLink]="['/user', item.user]" routerLinkActive="active">{{item.user}}</a>
         </span>
-        <span [class.item-details]="item.type !== 'job'">
+        <span [class.item-details]="item.type !== 'job'"
+        (mouseover)="mouseOverRead(item.time_ago)" (mouseout)="mouseAwayStopRead()">
           {{item.time_ago}}
-          <span *ngIf="item.type !== 'job'"> |
+          <span *ngIf="item.type !== 'job'" 
+          (mouseover)="mouseOverRead(item.comments_count+' comments')" (mouseout)="mouseAwayStopRead()"> |
             <a [routerLink]="['/item', item.id]" routerLinkActive="active">
              {{item.comments_count | comment }}
             </a>
@@ -49,7 +56,9 @@
         <div class="pollBar" [ngStyle]="{'width': pollResult.points/item.poll_votes_count*100+'%'}"></div>
       </div>
     </div>
-    <p class="subject" [innerHTML]="item.content"></p>
+    <p class="subject" [innerHTML]="item.content"
+    (mouseover)="mouseOverRead(item.content)"
+    (mouseout)="mouseAwayStopRead()"></p>
     <ul class="comment-list">
       <li *ngFor="let comment of item.comments" >
         <app-comment [comment]="comment" [isMainComment]="true"></app-comment>
